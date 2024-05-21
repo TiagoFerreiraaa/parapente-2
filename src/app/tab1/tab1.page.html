@@ -1,17 +1,52 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>Clima para Parapente</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="header-text" *ngIf="weatherData">
+    <div class="flight-status" [ngClass]="{'good': isGoodWeatherForFlying(), 'bad': !isGoodWeatherForFlying()}">
+      {{ isGoodWeatherForFlying() ? 'Tempo bom para voo' : 'Não é bom para voo' }}
+    </div>
+    <div class="search-bar-container">
+      <ion-searchbar [(ngModel)]="searchCity" placeholder="Busque um local"></ion-searchbar>
+      <ion-button (click)="searchWeather(searchCity)">Buscar</ion-button>
+    </div>
+  </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="weather-container" *ngIf="weatherData">
+    <h1>{{ weatherData.name }}</h1>
+    <h2>{{ weatherData.main.temp }}°C</h2>
+    <p>{{ weatherData.main.temp_min }}°C / {{ weatherData.main.temp_max }}°C</p>
+    <img [src]="getWeatherIcon(weatherData.weather[0].icon)" class="weather-icon">
+    <p>{{ weatherData.weather[0].description | titlecase }}</p>
+
+    <div class="weather-info">
+      <div class="weather-info-group">
+        <div class="weather-info-item">
+          <img src="https://pbs.twimg.com/media/GN-LIKGWwAEMJjr?format=png&name=120x120" alt="Wind">
+          <p>Velocidade do Vento</p>
+          <p>{{ weatherData.wind.speed }} km/h</p>
+        </div>
+        <div class="weather-info-item">
+          <ion-icon name="water-outline"></ion-icon>
+          <p>Umidade</p>
+          <p>{{ weatherData.main.humidity }}%</p>
+        </div>
+      </div>
+      <div class="weather-info-group">
+        <div class="weather-info-item">
+          <ion-icon name="speedometer-outline"></ion-icon>
+          <p>Pressão</p>
+          <p>{{ weatherData.main.pressure }} hPa</p>
+        </div>
+        <div class="weather-info-item">
+          <ion-icon name="compass-outline"></ion-icon>
+          <p>Direção do Vento</p>
+          <p>{{ weatherData.wind.deg }}°</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>

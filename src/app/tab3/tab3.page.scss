@@ -1,0 +1,25 @@
+ion-content {
+  --ion-background-color: linear-gradient(360deg, #0093E9, #003061);
+}
+
+ion-toolbar{
+  --background: #0093E9;
+}
+
+ion-title {
+  text-align: center;
+  font-size: 1.5rem;
+
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}

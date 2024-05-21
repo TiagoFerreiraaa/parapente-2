@@ -1,1 +1,11 @@
+ion-tab-bar {
+  --background: #003687;  /* Cor de fundo da barra de abas */
+  --color: #fdfdfd;       /* Cor do texto das abas */
+  --color-selected: #ffffff;  /* Cor do texto da aba selecionada */
+}
 
+/* Estilo para os botões de aba */
+ion-tab-button {
+  --color: #d3d3d3;       /* Cor padrão dos ícones e texto */
+  --color-selected: #ffffff;  /* Cor dos ícones e texto da aba selecionada */
+}
